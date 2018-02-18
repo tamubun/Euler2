@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>オイラー角の定義の別解釈</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<script src="./jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="./three.min.js" type="application/javascript"></script>
+<script src="./TrackballControls.js" type="application/javascript"></script>
+<script src="./rescalescreen.js" type="application/javascript"></script>
+<script src="./draggablescreen.js" type="application/javascript"></script>
+<script src="./graphscreen.js" type="application/javascript"></script>
+<script src="./threejsscreen.js" type="application/javascript"></script>
+<script src="./EulerAngle2.js" type="text/javascript"></script>
+<style>
+.yellow{
+color:#AA0
+}
+.cyan{
+color:#0EE
+}
+</style>
+</head> 
+<body> 
+<div data-role="page" id="page0">
+<div data-role="header"><h1>オイラー角の定義の別解釈</h1></div>
+<div data-role="content"> 
+<p>このページは、前野さんの書かれた<a href="http://irobutsu.a.la9.jp/mybook/ykwkrAM/sim/EulerAngle.html">オイラー角の解説ページ</a>を補足する目的で作った物です。プログラムもほとんど元のページからコピーしているので、使い方もほぼ同じはずです。<br />「元の解釈」にチェックを入れると、元のページと同様の解釈で動くので、チェックを入れたり外したりして遊んでみて下さい。
+</p>
+<p><canvas id="tcanvas" width=500 height=400></canvas></p>
+<input type="checkbox" id="original">元の解釈</input>
+<table>
+<tr>
+<td><label for="sliderf">φ=</label><label id="phival">0</label></td>
+<td><input type="range" name="sliderf" id="sliderf" value="0" min="0" max="359" step="0" onchange="phi=Number($('#sliderf').val());changePhiThetaPsi();" /></td>
+</tr>
+<tr>
+<td><label for="slidert">θ=</label><label id="thetaval">0</label></td>
+<td><input type="range" name="slidert" id="slidert" value="0" min="0" max="359" step="0" onchange="theta=Number($('#slidert').val());changePhiThetaPsi();" /></td>
+</tr>
+<tr>
+<td><label for="sliders">Ψ=</label><label id="psival">0</label></td>
+<td><input type="range" name="sliders" id="sliders" value="0" min="0" max="359" step="0" onchange="psi=Number($('#sliders').val());changePhiThetaPsi();" /></td>
+</tr>
+</table>
+<div id="now"></div>
+<p><br>
+オイラー角φ,θ,ψは、<a href="http://irobutsu.a.la9.jp/mybook/ykwkrAM/sim/EulerAngle.html">前野さんのページ</a>では、x,y,z軸を、
+<ol>
+<li>空間のz軸を軸としてφ回す</li>
+<li>回した後のx軸を軸としてθ回す</li>
+<li>さらにその後のz軸を軸としてψ回す</li>
+</ol>
+として説明されています。次々に回した先の座標軸を軸にして回すというのは、そのページのようにアニメーションが操作できるようになっていれば理解し易くなりますが、頭の中ではどうも理解しにくいのではないでしょうか。ここでは、空間に固定された(動かない)座標軸だけを使って、次のようにしてもオイラー角を理解することが出来る、ということをアニメーションで説明しています。
+<ol>
+<li>空間のz軸を軸としてψ回す</li>
+<li>空間のx軸を軸としてθ回す</li>
+<li>空間のz軸を軸としてφ回す</li>
+</ol>
+φ,θ,ψの現れ方が逆順になっていることに注意して下さい。こうやって定義しても、最初の定義と同じ回転を表現できるのです。固定された空間座標だけを使っていると言う意味では、こちらも結構分り易いのではないでしょうか。元のページと同じφ,θ,ψを入れてみて、回し方が違っても、最終的な座標軸の傾き方がいつも同じになっていることを確認してみて下さい。
+</p>
+</div>
+</div>
+</body>
+</html>
